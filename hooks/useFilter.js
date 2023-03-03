@@ -31,7 +31,7 @@ const useFilter = (price, ratings, time, transactions, distance) => {
                             return { ...state, transactions: "" };
                         }
                         if (key === "distance") {
-                            return { ...state, distance: DISTANCE };
+                            return { ...state, distance: 15 };
                         }
                     }
                 }

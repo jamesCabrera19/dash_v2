@@ -100,7 +100,7 @@ const Cards = ({ item, onPress, onSave }) => {
     );
 };
 
-const StoreCards = ({ storeIds, title, onPress }) => {
+const StoreCards = ({ storeIds, title, onTitlePress, onCardPress }) => {
     const {
         state: { data, isLoading },
     } = useContext(DataContext);
@@ -114,9 +114,10 @@ const StoreCards = ({ storeIds, title, onPress }) => {
                 group[category] = {};
             }
             group[category] = item.categories;
-
+            // console.log(group[category]);
             return group.category;
         }, {});
+
         return res[0]?.title;
     }, [data, storeIds]);
 
@@ -124,7 +125,7 @@ const StoreCards = ({ storeIds, title, onPress }) => {
         return (
             <Cards
                 item={item}
-                onPress={() => console.log(`navigate to ${item.name}`)}
+                onPress={onCardPress(item)}
                 onSave={() => console.log(`save store ${item.id}`)}
             />
         );
@@ -132,8 +133,8 @@ const StoreCards = ({ storeIds, title, onPress }) => {
     return (
         <>
             <RenderHeader
-                onPress={onPress(storeIds)}
-                title={`Close to you - ${storesTitles()}`}
+                onPress={onTitlePress(storeIds)}
+                title={title ? title : storesTitles()}
             />
             <FlatList
                 horizontal

@@ -36,7 +36,7 @@ const filteringSystem = (options = {}, data = []) => {
 const filterSystemB = (options = {}, data = [], enableDebug = Boolean) => {
     const newData = data.filter((el) => {
         if (!el.price) el.price = "$";
-        if (el.transactions.length === 0) el.transactions = ["delivery"];
+        if (el.transactions?.length === 0) el.transactions = ["delivery"];
         //
         const objectPrice = Array.from(options.price).length; // options price
         //
